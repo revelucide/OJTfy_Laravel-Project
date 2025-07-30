@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.profile-card {
+  background: white;
+  width: 360px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.avatar img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.info h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.info p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.actions {
+  margin-top: 1.5rem;
+}
+
+.actions a,
+.actions button {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0.25rem;
+}
+
+.actions button:hover,
+.actions a:hover {
+  background-color: #0056b3;
+}

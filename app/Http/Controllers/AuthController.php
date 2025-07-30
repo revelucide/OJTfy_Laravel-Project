@@ -12,22 +12,23 @@ class AuthController extends Controller
         return view('login'); // Make sure you have login.blade.php
     }
 
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
+   public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'username' => 'required|string',
+        'password' => 'required|string',
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard'); // Or wherever you want to go
-        }
-
-        return back()->withErrors([
-            'username' => 'Invalid credentials.',
-        ]);
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate(); // 🔒 Prevent session fixation
+        return redirect()->intended('/profile'); // ✅ Redirect after login
     }
+
+    return back()->withErrors([
+        'username' => 'Invalid credentials.',
+    ]);
+}
+
 
     public function logout(Request $request)
     {

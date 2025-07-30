@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,20 +15,16 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
+        $credentials = $request->only('username', 'password');
 
-        $user = User::where('username', $request->username)->first();
+        $user = User::where('username', $credentials['username'])->first();
 
-        if ($user && Hash::check($request->password, $user->password)) {
-            // Simulate login (you can later replace with Auth::login)
-            session(['user' => $user->username]);
-
-            return redirect('/dashboard')->with('success', 'Welcome back, ' . $user->fullname . '!');
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            session(['user_id' => $user->id]);
+            session(['user' => $user->only(['fullname', 'username', 'email'])]); // for profile/dashboard use
+            return redirect('/dashboard');
         }
 
-        return back()->with('error', 'Invalid credentials.');
+        return back()->with('error', 'Invalid username or password.');
     }
 }

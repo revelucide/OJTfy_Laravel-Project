@@ -1,0 +1,47 @@
+ body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 1.5rem;
+    }
+
+    .message-card {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+
+    .message-card:hover {
+      transform: scale(1.01);
+    }
+
+    .message-header {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .message-body {
+      font-size: 15px;
+      color: #333;
+    }
+
+    .message-time {
+      font-size: 12px;
+      color: #888;
+      margin-top: 0.5rem;
+      text-align: right;
+    }

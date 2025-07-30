@@ -64,15 +64,48 @@ Route::post('/settings', [SettingsController::class, 'update'])->name('settings.
 // -------------------
 // BLOGS & MESSAGES
 // -------------------
+
+
 Route::get('/create-blog', function () {
     if (!session()->has('user')) return redirect('/login');
-    return view('create-blog');
+
+    $blogs = session('blogs', []); // ✅ Fetch saved blogs
+
+    return view('create-blog', compact('blogs'));
 });
 
 Route::post('/submit-blog', function (Request $request) {
-    // Save blog post logic here
-    return 'Blog saved: ' . $request->title;
+    $blogs = session('blogs', []);
+
+    $blogs[] = [
+        'id' => uniqid(),
+        'title' => $request->title,
+        'content' => $request->content
+    ];
+
+    session(['blogs' => $blogs]);
+
+    return redirect('/create-blog')->with('success', 'Blog saved!');
 });
+
+Route::get('/purge-blogs', function () {
+    session()->forget('blogs'); // This deletes the 'blogs' from the session
+    return redirect('/create-blog')->with('success', 'All blog entries have been deleted.');
+});
+
+
+Route::get('/delete-blog/{id}', function ($id) {
+    $blogs = session('blogs', []);
+
+    $filtered = array_filter($blogs, function ($blog) use ($id) {
+        return $blog['id'] !== $id;
+    });
+
+    session(['blogs' => array_values($filtered)]); // Reindex array
+
+    return redirect('/create-blog')->with('success', 'Blog deleted!');
+});
+
 
 Route::get('/messages', function () {
     if (!session()->has('user')) return redirect('/login');

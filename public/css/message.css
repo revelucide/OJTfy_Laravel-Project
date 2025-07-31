@@ -1,4 +1,6 @@
  body {
+      background: url('/images/dashboard-background.jpg') no-repeat center center fixed;
+      background-size: cover;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f2f5;
       padding: 2rem;

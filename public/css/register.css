@@ -1,7 +1,8 @@
  body {
+      background: url('/images/register-background.jpg') no-repeat center center fixed;
+      background-size: cover;
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f0f2f5;
       display: flex;
       justify-content: center;
       align-items: center;

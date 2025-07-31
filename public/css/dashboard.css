@@ -92,4 +92,78 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
+.add-task-btn {
+  padding: 8px 16px;
+  background-color: #4193f8; /* A professional blue shade */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
 
+.add-task-btn:hover {
+  background-color: #00c8ff;
+}
+
+.ojtfy-logo {
+  height: 40px;
+  width: auto;
+  transform: scale(5.5); /* Zoom it in */
+  transform-origin: left center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.add-task-btn {
+  padding: 6px 12px;
+  background-color: #4193f8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-task-btn:hover {
+  background-color: #00c8ff;
+}
+
+.delete-btn {
+  padding: 4px 8px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4193f8;
+}
+
+.task-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.task-item input[type="checkbox"] {
+  margin-right: 10px;
+}

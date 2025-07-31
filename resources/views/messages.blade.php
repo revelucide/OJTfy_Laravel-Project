@@ -9,7 +9,7 @@
 <body>
   <div class="container">
      <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
-    <div class="title">Your Messages</div>
+    <div class="title">Your Inbox</div>
 
     <div class="message-card">
       <div class="message-header">System Notification</div>

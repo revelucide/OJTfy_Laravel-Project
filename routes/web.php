@@ -132,4 +132,67 @@ Route::get('/messages', function () {
     return view('messages');
 });
 
+// Show edit form
+Route::get('/edit-blog/{id}', function ($id) {
+    $blogs = session('blogs', []);
+    $blog = collect($blogs)->firstWhere('id', $id);
+
+    if (!$blog) {
+        return redirect('/create-blog')->with('error', 'Blog not found.');
+    }
+
+    return view('edit-blog', ['blog' => $blog]);
+});
+
+// Handle update
+Route::post('/update-blog/{id}', function (\Illuminate\Http\Request $request, $id) {
+    $blogs = session('blogs', []);
+
+    // Find blog by ID
+    foreach ($blogs as &$blog) {
+        if ($blog['id'] === $id) {
+            $blog['title'] = $request->input('title');
+            $blog['content'] = $request->input('content');
+            break;
+        }
+    }
+
+    session(['blogs' => $blogs]);
+
+    return redirect('/create-blog')->with('success', 'Blog updated successfully!');
+});
+
+
+// -------------------
+// PARTIAL ROUTES
+// -------------------
+
+Route::get('/dashboard-section/{section}', function ($section) {
+    $allowed = ['tasks', 'daily_logs', 'documents', 'progress_reports', 'daily_reports'];
+
+    if (!in_array($section, $allowed)) {
+        abort(404);
+    }
+
+    return view("partials.$section");
+});
+
+Route::post('/add-task', function (Request $request) {
+    $task = ['title' => $request->input('task'), 'completed' => false];
+    $tasks = session('tasks', []);
+    $tasks[] = $task;
+    session(['tasks' => $tasks]);
+
+    return response()->json(['success' => true]);
+});
+
+Route::post('/toggle-task/{index}', function ($index) {
+    $tasks = session('tasks', []);
+    if (isset($tasks[$index])) {
+        $tasks[$index]['completed'] = !$tasks[$index]['completed'];
+        session(['tasks' => $tasks]);
+    }
+    return back();
+});
+
 

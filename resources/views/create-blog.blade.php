@@ -38,24 +38,29 @@
     @endphp
 
     @if(count($blogs) > 0)
-      @foreach($blogs as $blog)
-        <div class="blog-entry">
-          <h4>{{ $blog['title'] }}</h4>
-          <p>{{ $blog['content'] }}</p>
-          @if(isset($blog['id']))
-            <a href="/delete-blog/{{ $blog['id'] }}"
-               class="delete-link"
-               onclick="return confirm('Are you sure you want to delete this blog?')">
-              🗑️ Delete
-            </a>
-          @endif
-        </div>
-      @endforeach
-    @else
-      <p style="text-align: center;">No blogs submitted yet.</p>
-    @endif
+  @foreach($blogs as $blog)
+    <div class="blog-entry">
+      <h4>{{ $blog['title'] }}</h4>
+      <p>{{ $blog['content'] }}</p>
+
+      @if(isset($blog['id']))
+      <div class="blog-actions">
+        <form action="/delete-blog/{{ $blog['id'] }}" method="GET" onsubmit="return confirm('Are you sure you want to delete this blog?')" style="display: inline;">
+          <button type="submit" class="delete-btn"> Delete</button>
+        </form>
+
+        <a href="/edit-blog/{{ $blog['id'] }}" class="edit-btn">Edit</a>
+      </div>
+      @endif
+    </div>
+  @endforeach
+@else
+  <p style="text-align: center;">No blogs submitted yet.</p>
+@endif
+
 
   </div>
 
 </body>
 </html>
+    

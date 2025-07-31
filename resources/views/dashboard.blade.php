@@ -9,51 +9,45 @@
 <body>
 
   <div class="navbar">
-    <h1>My Dashboard</h1>
+  <h1>My Dashboard</h1>
+  
+  <div class="nav-links">
+    <a href="/profile">Profile</a>
+    <a href="/settings">Settings</a>
+    <a href="/messages">Messages</a>
+    <a href="/create-blog">Blogs</a>
     <a href="/logout">Logout</a>
   </div>
+</div>
 
-  <div class="content">
-    @php
-      $user = session('user');
-    @endphp
+<div class="welcome-bar">
+  <p>Welcome back, <strong>{{ session('user.fullname') ?? 'User' }}</strong>!</p>
+</div>
+<div class="dashboard-container">
 
-    <div class="welcome">
-      Welcome back, <strong>{{ is_array($user) ? ($user['fullname'] ?? 'User') : 'User' }}</strong>!
-    </div>
+  <!-- LEFT SIDEBAR -->
+  <!-- LEFT SIDEBAR (OJT Sidebar) -->
+<div class="dashboard-sidebar">
+  <h3>OJT Tracker</h3>
+  <ul>
+    <li><a href="#">📝 My Tasks</a></li>
+    <li><a href="#">📅 Daily Logs</a></li>
+    <li><a href="#">📁 Documents</a></li>
+    <li><a href="#">📊 Progress Reports</a></li>
+    <li><a href="#">⚙️ Settings</a></li>
+  </ul>
+</div>
 
-    <div class="grid">
 
-      <a href="/profile" style="text-decoration: none; color: inherit;"> 
-        <div class="card">
-          <h2>Profile</h2>
-          <p>View and update your profile information.</p>
-        </div>
-      </a>
-
-      <a href="/settings" style="text-decoration: none; color: inherit;">
-        <div class="card">
-          <h2>Settings</h2>
-          <p>Manage your account settings, change password</p>
-        </div>
-      </a>
-
-      <a href="/messages" style="text-decoration: none; color: inherit;">
-        <div class="card">
-          <h2>Messages</h2>
-          <p>Check new notifications and messages.</p>
-        </div>
-      </a>
-
-      <a href="/create-blog" style="text-decoration: none; color: inherit;">
-        <div class="card">
-          <h2>Create blogs</h2>
-          <p>View and create blog posts, share whats on your mind!</p>
-        </div>
-      </a>
-
-    </div>
+  <!-- RIGHT MAIN CONTENT -->
+  <div class="dashboard-main">
+    <h2>Main Dashboard Area</h2>
+    <p>This is where your actual dashboard content (cards, charts, stats, etc.) will go.</p>
   </div>
+
+</div>
+
+
 
 </body>
 </html>

@@ -9,6 +9,7 @@
 <body>
 
   <div class="settings-container">
+    
     <h2>Update Account Settings</h2>
 
     <form action="{{ route('settings.update') }}" method="POST">
@@ -30,6 +31,7 @@
       </div>
 
       <button type="submit">Save Changes</button>
+      <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
     </form>
 
     @if(session('success'))

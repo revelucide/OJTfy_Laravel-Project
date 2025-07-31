@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="container">
+     <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
     <div class="title">Your Messages</div>
 
     <div class="message-card">

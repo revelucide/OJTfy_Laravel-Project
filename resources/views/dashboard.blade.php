@@ -34,7 +34,7 @@
       <a href="/settings" style="text-decoration: none; color: inherit;">
         <div class="card">
           <h2>Settings</h2>
-          <p>Manage your preferences and account settings.</p>
+          <p>Manage your account settings, change password</p>
         </div>
       </a>
 
@@ -48,7 +48,7 @@
       <a href="/create-blog" style="text-decoration: none; color: inherit;">
         <div class="card">
           <h2>Create blogs</h2>
-          <p>View and create blog posts.</p>
+          <p>View and create blog posts, share whats on your mind!</p>
         </div>
       </a>
 

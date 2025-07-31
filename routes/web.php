@@ -6,6 +6,9 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Http\Controllers\ProfileController;
 
 // ----------------------------------------
 // HOME (Redirect to Register or Dashboard)
@@ -44,16 +47,33 @@ Route::get('/dashboard', function () {
 // -------------------
 // PROFILE
 // -------------------
-Route::get('/profile', function () {
-    if (!session()->has('user')) return redirect('/login');
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
 
-    $user = session('user');
-    return view('profile', [
-        'fullname' => $user['fullname'],
-        'username' => $user['username'],
-        'email' => $user['email'],
+
+Route::post('/upload-profile-picture', function (Request $request) {
+    if (!session()->has('user_id')) return redirect('/login');
+
+    $request->validate([
+        'profile_picture' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
     ]);
-})->name('profile');
+
+    $user = \App\Models\User::find(session('user_id'));
+    if (!$user) return redirect('/login');
+
+    // Delete old picture
+    if ($user->profile_picture) {
+        Storage::disk('public')->delete($user->profile_picture);
+    }
+
+    $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+    $user->profile_picture = $path;
+    $user->save();
+
+    // Update session if you use session('user')
+    session(['user' => $user->toArray()]);
+
+    return redirect('/profile')->with('success', 'Profile picture updated!');
+});
 
 // -------------------
 // SETTINGS
